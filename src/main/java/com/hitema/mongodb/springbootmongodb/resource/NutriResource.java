@@ -46,6 +46,36 @@ public class NutriResource {
         return nutriRepository.findAllByCodeNutriscore(nutriscore);
     }
 
+    @GetMapping("/allByElement/")
+    public  List<Nutri> getAllByElement(@RequestParam(name="nutriscore") String nutriscore,@RequestParam(name="paysOrigine") String paysOrigine, @RequestParam(name="paysVente") String paysVente) {
+        if (nutriscore != null && !paysOrigine.equals("") && !paysVente.equals("")) {
+            return nutriRepository.findAllByAllElement(nutriscore, paysOrigine, paysVente);
+        } else if (nutriscore != "" && paysOrigine != ""){
+            return nutriRepository.findAllByNutriAndOrigine(nutriscore, paysOrigine);
+        } else if(nutriscore != "" && paysVente != "") {
+            return nutriRepository.findAllByNutriAndVente(nutriscore,paysVente);
+        } else if(paysOrigine != "" && paysVente != "") {
+            return nutriRepository.findAllByVenteAndOrigine(paysVente,paysOrigine);
+        } else if (nutriscore != "") {
+            return nutriRepository.findAllByCodeNutriscore(nutriscore);
+        } else if (paysOrigine != ""){
+            return nutriRepository.findAllByOrigine(paysOrigine);
+        } else if (paysVente != "") {
+            return nutriRepository.findAllByVente(paysVente);
+        }
+        return nutriRepository.findAllByCodeNutriscore(nutriscore);
+    }
+
+    @GetMapping("/allByPaysOrigine/")
+    public  List<Nutri> getAllBypaysOrigine(@RequestParam(name="paysOrigine") String paysOrigine) {
+        return nutriRepository.findAllByCodeNutriscore(paysOrigine);
+    }
+
+    @GetMapping("/allByPaysVente/")
+    public  List<Nutri> getAllBypaysVente(@RequestParam(name="paysVente") String paysVente) {
+        return nutriRepository.findAllByCodeNutriscore(paysVente);
+    }
+
     @GetMapping("/add")
     public Nutri addElementNutriscore(@RequestParam(name = "nom") String nom, @RequestParam(name = "grade") String grade, @RequestParam(name = "packaging") String packaging, @RequestParam(name = "paysOrigine") String paysOrigine, @RequestParam(name = "paysVente") String paysVente, @RequestParam(name = "categorie") String categorie, @RequestParam(name = "ingredientDescription") String ingredientDescription, @RequestParam(name = "quantity") String quantity) {
         Random r = new Random();
