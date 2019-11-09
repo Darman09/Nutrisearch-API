@@ -1,7 +1,6 @@
 package com.hitema.mongodb.springbootmongodb.repository;
 
 import com.hitema.mongodb.springbootmongodb.document.Nutri;
-import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 

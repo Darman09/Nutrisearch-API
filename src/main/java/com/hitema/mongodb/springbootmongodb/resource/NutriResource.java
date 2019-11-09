@@ -17,13 +17,10 @@ import java.util.Random;
 @RequestMapping("rest/nutri")
 public class NutriResource {
 
-
     private NutriRepository nutriRepository;
-
     public NutriResource(NutriRepository nutriRepository) {
         this.nutriRepository = nutriRepository;
     }
-
 
     @GetMapping("/all")
     public List<Nutri> getAll(){
