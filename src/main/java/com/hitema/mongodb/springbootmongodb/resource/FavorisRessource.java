@@ -27,10 +27,8 @@ public class FavorisRessource {
     }
 
     @GetMapping("/add")
-    public Favoris addElementFavoris(@RequestParam(name = "nom") String nom, @RequestParam(name = "grade") String grade, @RequestParam(name = "packaging") String packaging, @RequestParam(name = "paysOrigine") String paysOrigine, @RequestParam(name = "paysVente") String paysVente, @RequestParam(name = "categorie") String categorie, @RequestParam(name = "ingredientDescription") String ingredientDescription, @RequestParam(name = "quantity") String quantity) {
-        Random r = new Random();
-        Integer n = r.nextInt(65535);
-        return favorisRepository.save(new Favoris(n.toString(),nom,grade,packaging,paysOrigine,paysVente,categorie,ingredientDescription,quantity));
+    public Favoris addElementFavoris(@RequestParam(name= "id") String id,@RequestParam(name = "nom") String nom, @RequestParam(name = "grade") String grade, @RequestParam(name = "packaging") String packaging, @RequestParam(name = "paysOrigine") String paysOrigine, @RequestParam(name = "paysVente") String paysVente, @RequestParam(name = "categorie") String categorie, @RequestParam(name = "ingredientDescription") String ingredientDescription, @RequestParam(name = "quantity") String quantity) {
+        return favorisRepository.save(new Favoris(id,nom,grade,packaging,paysOrigine,paysVente,categorie,ingredientDescription,quantity));
     }
 
 }
