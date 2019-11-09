@@ -8,7 +8,10 @@ import java.util.List;
 
 public interface FavorisRepository extends MongoRepository<Favoris, String> {
 
-    @Query("{ 'nutrition_grades' : {$ne : null},'product_name_fr' : {$ne : null}  }")
+    @Query("{}")
     List<Favoris> findAllNotNullableProduct();
+
+    @Query("{'idproduit' : ?0}")
+    List<Favoris> findProduitById(String idProduit);
 
 }
