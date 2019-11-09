@@ -45,22 +45,23 @@ public class NutriResource {
 
     @GetMapping("/allByElement/")
     public  List<Nutri> getAllByElement(@RequestParam(name="nutriscore") String nutriscore,@RequestParam(name="paysOrigine") String paysOrigine, @RequestParam(name="paysVente") String paysVente) {
-        if (nutriscore != null && !paysOrigine.equals("") && !paysVente.equals("")) {
+        if (!nutriscore.equals("none") && !paysOrigine.equals("none") && !paysVente.equals("none")) {
             return nutriRepository.findAllByAllElement(nutriscore, paysOrigine, paysVente);
-        } else if (nutriscore != "" && paysOrigine != ""){
+        } else if (!nutriscore.equals("none") && !paysOrigine.equals("none")){
             return nutriRepository.findAllByNutriAndOrigine(nutriscore, paysOrigine);
-        } else if(nutriscore != "" && paysVente != "") {
+        } else if(!nutriscore.equals("none") && !paysVente.equals("none")) {
             return nutriRepository.findAllByNutriAndVente(nutriscore,paysVente);
-        } else if(paysOrigine != "" && paysVente != "") {
+        } else if(!paysOrigine.equals("none") && !paysVente.equals("none")) {
             return nutriRepository.findAllByVenteAndOrigine(paysVente,paysOrigine);
-        } else if (nutriscore != "") {
+        } else if (!nutriscore.equals("none")) {
             return nutriRepository.findAllByCodeNutriscore(nutriscore);
-        } else if (paysOrigine != ""){
+        } else if (!paysOrigine.equals("none")){
             return nutriRepository.findAllByOrigine(paysOrigine);
-        } else if (paysVente != "") {
+        } else if (!paysVente.equals("none")) {
             return nutriRepository.findAllByVente(paysVente);
+        } else {
+            return nutriRepository.findAllByCodeNutriscore(nutriscore);
         }
-        return nutriRepository.findAllByCodeNutriscore(nutriscore);
     }
 
     @GetMapping("/allByPaysOrigine/")
