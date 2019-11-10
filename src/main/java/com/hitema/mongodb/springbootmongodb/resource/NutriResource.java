@@ -60,7 +60,7 @@ public class NutriResource {
         } else if (!paysVente.equals("none")) {
             return nutriRepository.findAllByVente(paysVente);
         } else {
-            return nutriRepository.findAllByCodeNutriscore(nutriscore);
+            return nutriRepository.findAllNotNullableProduct();
         }
     }
 
